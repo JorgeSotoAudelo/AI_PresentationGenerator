@@ -3,8 +3,27 @@
 <head>
     <title>My Flask App</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <style>
+        #loading {
+            display: none;
+            position: fixed;
+            z-index: 999;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            text-align: center;
+            padding-top: 200px;
+        }
+    </style>
 </head>
 <body>
+    <div id="loading">
+        <div class="spinner-border text-primary" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+    </div>
     <div class="d-flex flex-column align-items-center justify-content-center min-vh-100">
         <h1 class="text-center">Crea diapositivas de</h1>
         <h1 class="text-center fw-bold text-danger">PowerPoint</h1>
@@ -13,7 +32,7 @@
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-md-6">
-                    <form action="/download" method="GET">
+                    <form id="form" action="/download" method="GET" onsubmit="showLoading()">
                         <div class="input-group mb-3">
                             <input type="text" name="input_text" class="form-control" placeholder="Escribe tu tema" aria-label="theme" aria-describedby="button-addon2">
                             <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Generar</button>
@@ -25,5 +44,10 @@
     </div>
   
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+    <script>
+        function showLoading() {
+            document.getElementById('loading').style.display = 'block';
+        }
+    </script>
 </body>
 </html>
