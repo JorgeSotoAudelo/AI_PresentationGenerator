@@ -48,6 +48,12 @@
         function showLoading() {
             document.getElementById('loading').style.display = 'block';
         }
+        document.getElementById("myForm").addEventListener("submit", function() {
+            // Add a delay of 2 seconds before redirecting to the home page
+            setTimeout(function() {
+                window.location.href = "/";
+            }, 2000);
+        });
     </script>
 </body>
 </html>
