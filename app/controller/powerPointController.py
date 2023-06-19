@@ -22,12 +22,11 @@ class powerPointController:
             slide = presentation.slides.add_slide(presentation.slide_layouts[1])
 
             # Set slide title
-            title = slide.shapes.title
+            title = slide.shapes[0]
             title.text = slide_data.get('title', '')
 
             # Set slide text
-            content_box = slide.shapes.add_textbox(Inches(1), Inches(1.5), Inches(8), Inches(5))
-            text_frame = content_box.text_frame
+            text_frame = slide.shapes[1]
             text_frame.text = slide_data.get('text', '')
 
             # Configure text formatting
@@ -42,11 +41,9 @@ class powerPointController:
             if image_url:
                 image_path = self.imgController.downloadImage(image_url)
                 if image_path:
-                    image_box = slide.shapes.add_picture(image_path, Inches(1), Inches(3), width=Inches(6), height=Inches(4))
+                    slide.shapes.add_picture(image_path, Inches(7.2), Inches(4.4), width=Inches(3), height=Inches(2))
 
-                    # Adjust image positioning
-                    image_box.left = int((presentation.slide_width - image_box.width) / 2)
-
+              
                 # Delete downloaded image from server
                 if os.path.exists(image_path):
                     os.remove(image_path)
