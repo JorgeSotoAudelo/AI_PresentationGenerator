@@ -8,9 +8,13 @@ def index():
 
 def downloadPresentation():
     inputText = request.args.get('inputText')
+    slideNumber = request.args.get('slideCount')
+    print(f'SLIDE NUMBER: {slideNumber}')
     gptControl = gptController()
     presentationController = powerPointController()
-    json_data = gptControl.chatGPTrequest(inputText)
+    json_data = gptControl.chatGPTrequest(inputText,slideNumber)
+    json_data = findJSON(json_data)
+    print(f"RESPUESTA DE CHATGPT: {json_data}")
     presentation = presentationController.createPowerpoint(json_data)
     presentation_path = 'app/temp/output.pptx'
     presentation.save(presentation_path)
@@ -25,4 +29,6 @@ def downloadPresentation():
 
     return response
 
-
+def findJSON(text):
+    index = text.find('{')
+    return text[index:]
