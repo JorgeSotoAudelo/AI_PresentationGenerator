@@ -12,7 +12,7 @@ def downloadPresentation():
     presentationController = powerPointController()
     json_data = gptControl.chatGPTrequest(inputText)
     presentation = presentationController.createPowerpoint(json_data)
-    presentation_path = 'output.pptx'
+    presentation_path = 'app/temp/output.pptx'
     presentation.save(presentation_path)
 
     # Prepare the file to be downloaded
