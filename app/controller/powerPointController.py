@@ -11,7 +11,7 @@ class powerPointController:
         self.imgController = imageController()
 
     def createPowerpoint(self,json_data):
-        presentation = Presentation()
+        presentation = Presentation("app/templates/Atlas.pptx")
 
         data = json.loads(json_data)
         if 'slides' not in data:
