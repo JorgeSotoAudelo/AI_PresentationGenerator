@@ -24,7 +24,8 @@ def downloadPresentation():
         response.headers['Content-Type'] = 'application/vnd.openxmlformats-officedocument.presentationml.presentation'
 
         return response
-    except Exception:
+    except Exception as e:
+        print(str(e))
         return render_template('error.html')
 
 def getJSON(inputText,slideNumber):
