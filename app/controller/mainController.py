@@ -7,28 +7,36 @@ def index():
 
 
 def downloadPresentation():
-    inputText = request.args.get('inputText')
-    slideNumber = request.args.get('slideCount')
-    print(f'SLIDE NUMBER: {slideNumber}')
+    try:
+        inputText = request.args.get('inputText')
+        slideNumber = request.args.get('slideCount')
+        presentationPath = 'app/temp/output.pptx'
+
+        json_data = getJSON(inputText,slideNumber)
+        makePresentation(json_data,presentationPath)
+
+        # Prepare the file to be downloaded
+        with open(presentationPath, 'rb') as file:
+            data = file.read()
+
+        response = make_response(data)
+        response.headers['Content-Disposition'] = 'attachment; filename=output.pptx'
+        response.headers['Content-Type'] = 'application/vnd.openxmlformats-officedocument.presentationml.presentation'
+
+        return response
+    except Exception:
+        return render_template('error.html')
+
+def getJSON(inputText,slideNumber):
     gptControl = gptController()
-    presentationController = powerPointController()
     json_data = gptControl.chatGPTrequest(inputText,slideNumber)
-    json_data = findJSON(json_data)
-    print(f"RESPUESTA DE CHATGPT: {json_data}")
+    return findJSON(json_data)
+
+def makePresentation(json_data, presentationPath):
+    presentationController = powerPointController()
     presentation = presentationController.createPowerpoint(json_data)
-    presentation_path = 'app/temp/output.pptx'
-    presentation.save(presentation_path)
-
-    # Prepare the file to be downloaded
-    with open(presentation_path, 'rb') as file:
-        data = file.read()
-
-    response = make_response(data)
-    response.headers['Content-Disposition'] = 'attachment; filename=output.pptx'
-    response.headers['Content-Type'] = 'application/vnd.openxmlformats-officedocument.presentationml.presentation'
-
-    return response
+    presentation.save(presentationPath)
 
 def findJSON(text):
-    index = text.find('{')
-    return text[index:]
+    indexJSON = text.find('{')
+    return text[indexJSON:]
