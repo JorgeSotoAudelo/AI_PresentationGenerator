@@ -10,8 +10,6 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
-    - run: mkdir -p app/build/libs
-    - uses: actions/download-artifact@v3
       with:
         name: app
         path: app/build/libs
