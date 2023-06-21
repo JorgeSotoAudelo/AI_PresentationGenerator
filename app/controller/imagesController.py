@@ -1,6 +1,5 @@
 import requests
 import urllib.parse
-
 class imageController:
 
     def __init__(self):
