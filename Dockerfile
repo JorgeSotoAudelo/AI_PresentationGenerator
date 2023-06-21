@@ -2,7 +2,7 @@
 FROM python:3.10
 
 # Set the working directory inside the container
-WORKDIR .
+WORKDIR /AI_PresentationGenerator
 
 # Copy the requirements file to the working directory
 COPY requirements.txt .
