@@ -20,10 +20,10 @@
                         </div>
                         <div class="form-group">
                             <label for="exampleInputPassword1">Numero de diapositivas</label>
-                            <input type="number" class="form-control" value="6" placeholder="6" name="slideCount" min="1" max="20">
+                            <input type="number" class="form-control" value="6" placeholder="6" name="slideCount" min="1" max="19">
                           </div>
                     </form>
-                    <p id="aviso" style="display: none;">Tu descarga comenzará en un momento...</p>
+                    <p id="aviso" style="display: none;">Contactando la IA...</p>
                 </div>
             </div>
         </div>
@@ -31,8 +31,23 @@
     <p>version 1.0</p>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
     <script>
-        function showLoading() {
-            document.getElementById('aviso').style.display = 'block';
+        function showLoading(event) {
+
+            var avisoElement = document.getElementById('aviso');
+            avisoElement.style.display = 'block';
+
+            setTimeout(function() {
+                avisoElement.textContent = 'Creando diapositivas...';
+            }, 8000);
+            setTimeout(function() {
+                avisoElement.textContent = 'Preparando la descarga...';
+            }, 16000);
+            setTimeout(function() {
+                avisoElement.style.display = 'none';
+                avisoElement.textContent = 'Contactando la IA...';
+            }, 24000);
+
+
         } 
     </script>
 </body>
