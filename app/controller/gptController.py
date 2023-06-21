@@ -1,6 +1,6 @@
 import openai
 import sys
-from config import API_KEYGPT
+from app.config.config import API_KEYGPT
 
 class gptController:
     def __init__(self):
