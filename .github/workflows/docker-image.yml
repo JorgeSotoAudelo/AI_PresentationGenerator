@@ -12,6 +12,8 @@ jobs:
     - uses: actions/checkout@v3
     - name: Build & Push Docker image
       uses: mr-smithers-excellent/docker-build-push@v6
+      env:
+        API_KEYGPT: ${{ secrets.API_KEYGPT }}
       with:
         image: jorgesotoaudelo/ai_presentation_generator
         tags: latest
