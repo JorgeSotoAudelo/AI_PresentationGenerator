@@ -1,6 +1,9 @@
 # Use the official Python base image with the desired version
 FROM python:3.10
 
+ARG API_KEYGPT
+ENV API_KEYGPT=${API_KEYGPT}
+
 # Set the working directory inside the container
 WORKDIR /AI_PresentationGenerator
 
