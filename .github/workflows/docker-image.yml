@@ -19,5 +19,6 @@ jobs:
         tags: latest
         registry: docker.io
         dockerfile: Dockerfile
+        buildArgs: API_KEYGPT=${{ secrets.API_KEYGPT }}
         username: ${{ secrets.DOCKERHUB_USERNAME }}
         password: ${{ secrets.DOCKERHUB_PASSWORD }}
