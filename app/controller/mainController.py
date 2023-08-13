@@ -11,9 +11,11 @@ def downloadPresentation():
         inputText = request.args.get('inputText')
         slideNumber = request.args.get('slideCount')
         language = request.args.get('language')
+        apiKey = request.args.get('apiKey')
+        print(apiKey)
         presentationPath = 'app/temp/output.pptx'
 
-        json_data = getJSON(inputText,slideNumber,language)
+        json_data = getJSON(inputText,slideNumber,language,apiKey)
         makePresentation(json_data,presentationPath)
 
         # Prepare the file to be downloaded
@@ -29,8 +31,8 @@ def downloadPresentation():
         print(str(e))
         return render_template('error.html')
 
-def getJSON(inputText,slideNumber,language):
-    gptControl = gptController()
+def getJSON(inputText,slideNumber,language,apiKey):
+    gptControl = gptController(apiKey)
     json_data = gptControl.chatGPTrequest(inputText,slideNumber,language)
     return findJSON(json_data)
 
