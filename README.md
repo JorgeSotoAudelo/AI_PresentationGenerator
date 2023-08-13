@@ -44,6 +44,7 @@ También puedes ejecutar la aplicación utilizando Docker. Sigue los siguientes 
 
 ```bash
 docker run -p 5000:5000 jorgesotoaudelo/ai_presentation_generator:latest
+```
 
 3. Abre tu navegador web y visita `http://localhost:5000` para acceder a la aplicación.
 
